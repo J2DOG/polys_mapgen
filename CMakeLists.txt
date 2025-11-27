@@ -50,7 +50,7 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 # Build executable node
-add_executable(hpolys_mapgen_node src/hpolys_mapgen_node.cpp)
+add_executable(hpolys_mapgen_node src/mapgen.cpp)
 
 target_link_libraries(hpolys_mapgen_node
   ${PROJECT_NAME}

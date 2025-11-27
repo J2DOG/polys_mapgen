@@ -23,12 +23,12 @@ int main(int argc, char** argv) {
     std::vector<Eigen::MatrixX4d> hPolys;
     // Example: a cube defined by 6 planes
     Eigen::MatrixX4d cube(6,4);
-    cube <<  1, 0, 0, -2,   
-            -1, 0, 0, 1,    
-            0, 1, 0, -2,   
-            0,-1, 0, 1,    
-            0, 0, 1, -2, 
-            0, 0,-1, 1; 
+    cube <<  1, 0, 0, -8,   
+            -1, 0, 0, 4,    
+            0, 1, 0, -8,   
+            0,-1, 0, 4,    
+            0, 0, 1, -5,
+            0, 0,-1, 0; 
     hPolys.push_back(cube);
     config.hPolys_ptr = &hPolys;
     config.output_ptr = &output;

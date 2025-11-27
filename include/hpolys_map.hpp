@@ -1,4 +1,4 @@
-#ifdef HPOLYS_MAPGEN_HPP
+#ifndef HPOLYS_MAPGEN_HPP
 #define HPOLYS_MAPGEN_HPP
 
 #include <ros/ros.h>
@@ -41,7 +41,7 @@ public:
     void generatePointCloud();
 
     
-}
+};
 
 
 } // namespace hpolys_mapgen

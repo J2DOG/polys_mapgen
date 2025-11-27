@@ -25,7 +25,7 @@ void MapGenerator::generatePointCloud()
     pcl::PointCloud<pcl::PointXYZ> cloud;
     float step_size = 0.1; // step size  (m)
     // point_now
-    Eigen::Vector3f point_now;
+    Eigen::Vector3d point_now;
     bool inside;
     Eigen::VectorXd Ab;
 
@@ -47,6 +47,7 @@ void MapGenerator::generatePointCloud()
                         break;
                     }
                 }
+
                 if (inside)
                 {
                     cloud.points.emplace_back(pcl::PointXYZ(point_now(0), point_now(1), point_now(2)));
@@ -55,12 +56,18 @@ void MapGenerator::generatePointCloud()
         }
     }
     // optimize point cloud
+    
+
     // save to output
     pcl::toROSMsg(cloud, *(config_.output_ptr));
-    config_.output_ptr->header.frame_id = "map";
+    // print info of output point cloud
+    
+    config_.output_ptr->header.frame_id = "odom";
+    //time stamp
+    config_.output_ptr->header.stamp = ros::Time::now();
     ROS_INFO("Point cloud generation completed with %lu points.", cloud.points.size());
     // kill templeary variables
-    cloud.clear();
+    //cloud.clear();
 }
 
 
