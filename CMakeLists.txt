@@ -11,11 +11,14 @@ find_package(catkin REQUIRED COMPONENTS
   pcl_ros
   std_msgs
   sensor_msgs
+  roslib
 )
 
 ## System dependencies
 find_package(PCL REQUIRED)
 find_package(Eigen3 REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(YAMLCPP REQUIRED yaml-cpp)
 
 ###################################
 ## catkin package declaration    ##
@@ -36,6 +39,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   ${PCL_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIR}  # Ensure Eigen headers are found
+  ${YAMLCPP_INCLUDE_DIRS} # Include yaml-cpp headers
 )
 
 # Build library
@@ -54,4 +58,5 @@ add_executable(hpolys_mapgen_node src/mapgen.cpp)
 
 target_link_libraries(hpolys_mapgen_node
   ${PROJECT_NAME}
+  ${YAMLCPP_LIBRARIES} # Link yaml-cpp library
 )

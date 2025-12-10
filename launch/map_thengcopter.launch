@@ -10,7 +10,7 @@
   </node> -->
 
   <node pkg="polys_mapgen" type="hpolys_mapgen_node" name="hpolys_mapgen_node" output="screen">
-  <rosparam file="$(find polys_mapgen)/config/mapgen.yaml" command="load" />
+  <rosparam file="$(find polys_mapgen)/cfg/mapgen.yaml" command="load" />
   <remap from="/polys_pc_map" to="/voxel_map"/>
   </node>
   

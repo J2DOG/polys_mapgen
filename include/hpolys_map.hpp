@@ -39,8 +39,7 @@ public:
     ~MapGenerator();
     void config(hpolys_mapgen_config& config);
     void generatePointCloud();
-
-    
+    void generateCubesPointCloud();
 };
 
 

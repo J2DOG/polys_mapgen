@@ -18,7 +18,7 @@ void MapGenerator::config(hpolys_mapgen_config& config)
 
 void MapGenerator::generatePointCloud()
 {
-    ROS_INFO("Generating point cloud from convex polytopes...");
+    ROS_INFO("[polys_mapgen]:Generating point cloud from convex polytopes...");
     // iterate all points in the defined map area
     // check if the point is inside any of the convex polytopes
     // if true, add to point cloud
@@ -47,7 +47,6 @@ void MapGenerator::generatePointCloud()
                         break;
                     }
                 }
-
                 if (inside)
                 {
                     cloud.points.emplace_back(pcl::PointXYZ(point_now(0), point_now(1), point_now(2)));
@@ -65,11 +64,14 @@ void MapGenerator::generatePointCloud()
     config_.output_ptr->header.frame_id = "odom";
     //time stamp
     config_.output_ptr->header.stamp = ros::Time::now();
-    ROS_INFO("Point cloud generation completed with %lu points.", cloud.points.size());
+    ROS_INFO("[polys_mapgen]:Point cloud generation completed with %lu points.", cloud.points.size());
     // kill templeary variables
     //cloud.clear();
 }
 
-
+void MapGenerator::generateCubesPointCloud()
+{
+    
+}
 
 
