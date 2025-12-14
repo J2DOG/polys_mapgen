@@ -9,7 +9,7 @@ std::vector<Eigen::MatrixX4d> loadObstaclesFromYAML(const std::string& filepath)
     std::vector<Eigen::MatrixX4d> hPolys;
         YAML::Node config = YAML::LoadFile(filepath);
         if (!config["hpolys"]) {
-            ROS_WARN("[load_obstacles]:No 'hpolys' key found in YAML file: %s", filepath.c_str());
+            ROS_WARN("[polys_mapgen]:No 'hpolys' key found in YAML file: %s", filepath.c_str());
             return hPolys;
         }
         for (const auto& polytope_node : config["hpolys"]) {
@@ -24,7 +24,7 @@ std::vector<Eigen::MatrixX4d> loadObstaclesFromYAML(const std::string& filepath)
             }
             hPolys.push_back(H);
         }
-    ROS_INFO("[load_obstacles]:Loaded %lu obstacles from YAML.", hPolys.size());
+    ROS_INFO("[polys_mapgen]:Loaded %lu obstacles from YAML.", hPolys.size());
     return hPolys;
 }
 
@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
     // Define some example convex polytopes (as 4D matrices)
     std::vector<Eigen::MatrixX4d> hPolys;
     std::string pkg_path = ros::package::getPath("polys_mapgen");
-    std::string obs_yaml_path = pkg_path + "/cfg/obstacles.yaml";
+    std::string obs_yaml_path = pkg_path + "/cfg/random_obstacles.yaml";
     hPolys = loadObstaclesFromYAML(obs_yaml_path);
     config.hPolys_ptr = &hPolys;
     config.output_ptr = &output;

@@ -2,7 +2,7 @@ import yaml
 import random
 
 def generate_random_cube(map_x_min, map_x_max, map_y_min, map_y_max, map_z_min, map_z_max,
-                         x_len_min, x_len_max, y_len_min, y_len_max, z_len_min, z_len_max):
+                        x_len_min, x_len_max, y_len_min, y_len_max, z_len_min, z_len_max):
     # Generate random sizes for the cube
     x_len = random.uniform(x_len_min, x_len_max)
     y_len = random.uniform(y_len_min, y_len_max)
@@ -42,10 +42,10 @@ def generate_random_cube(map_x_min, map_x_max, map_y_min, map_y_max, map_z_min, 
     return cube_constraints
 
 
-def generate_cubes_config(num_cubes, map_size_x, map_size_y, map_size_z, map_origin_x, map_origin_y, map_origin_z,
-                          x_len_min, x_len_max, y_len_min, y_len_max, z_len_min, z_len_max):
-    cubes = []
-    for _ in range(num_cubes):
+def generate_hpolys_config(num_hpolys, map_size_x, map_size_y, map_size_z, map_origin_x, map_origin_y, map_origin_z,
+                            x_len_min, x_len_max, y_len_min, y_len_max, z_len_min, z_len_max):
+    hpolys = []
+    for _ in range(num_hpolys):
         cube = generate_random_cube(
             map_x_min=map_origin_x,
             map_x_max=map_origin_x + map_size_x,
@@ -60,33 +60,33 @@ def generate_cubes_config(num_cubes, map_size_x, map_size_y, map_size_z, map_ori
             z_len_min=z_len_min,
             z_len_max=z_len_max
         )
-        if cube:  # Only add valid cubes
-            cubes.append(cube)
+        if cube:  # Only add valid hpolys
+            hpolys.append(cube)
 
-    config = {'cubes': [[list(constraint) for constraint in cube] for cube in cubes]}
+    config = {'hpolys': [[list(constraint) for constraint in cube] for cube in hpolys]}
     return config
 
 
 if __name__ == "__main__":
     # Define map parameters
-    map_size_x = 100.0
-    map_size_y = 100.0
-    map_size_z = 10.0
-    map_origin_x = -50.0
-    map_origin_y = -50.0
+    map_size_x = 20.0
+    map_size_y = 20.0
+    map_size_z = 5.0
+    map_origin_x = -10.0
+    map_origin_y = -10.0
     map_origin_z = 0.0
 
     # Define cube dimensions ranges
-    x_len_min, x_len_max = 1, 3.0
-    y_len_min, y_len_max = 1, 3.0
-    z_len_min, z_len_max = 5.0, 10.0
+    x_len_min, x_len_max = 0.5, 2
+    y_len_min, y_len_max = 0.5, 2
+    z_len_min, z_len_max = 5.0, 5.0
 
-    # Number of random cubes to generate
-    num_cubes = 30
+    # Number of random hpolys to generate
+    num_hpolys = 20
 
-    # Generate the cubes configuration
-    cubes_config = generate_cubes_config(
-        num_cubes=num_cubes,
+    # Generate the hpolys configuration
+    hpolys_config = generate_hpolys_config(
+        num_hpolys=num_hpolys,
         map_size_x=map_size_x,
         map_size_y=map_size_y,
         map_size_z=map_size_z,
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     )
 
     # Save to YAML file
-    with open('../cfg/obstacles.yaml', 'w') as file:
-        yaml.dump(cubes_config, file, default_flow_style=None)
+    with open('../cfg/random_obstacles.yaml', 'w') as file:
+        yaml.dump(hpolys_config, file, default_flow_style=None)
 
-    print(f"Generated {len(cubes_config['cubes'])} random cubes and saved to '../cfg/obstacles.yaml'")
+    print(f"Generated {len(hpolys_config['hpolys'])} random hpolys and saved to '../cfg/obstacles.yaml'")

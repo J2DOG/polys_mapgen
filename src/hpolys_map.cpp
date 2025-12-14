@@ -4,7 +4,7 @@ using namespace hpolys_map;
 
 MapGenerator::MapGenerator()
 {
-    ROS_INFO("MapGenerator initialized.");
+    ROS_INFO("[polys_mapgen]:MapGenerator initialized.");
 }
 
 // Destructor
@@ -12,7 +12,7 @@ MapGenerator::~MapGenerator(){}
 
 void MapGenerator::config(hpolys_mapgen_config& config)
 {
-    ROS_INFO("MapGenerator configuration set.");
+    ROS_INFO("[polys_mapgen]:MapGenerator configuration set.");
     config_ = config;
 }
 
@@ -23,7 +23,7 @@ void MapGenerator::generatePointCloud()
     // check if the point is inside any of the convex polytopes
     // if true, add to point cloud
     pcl::PointCloud<pcl::PointXYZ> cloud;
-    float step_size = 0.1; // step size  (m)
+    float step_size = 0.25; // step size  (m)
     // point_now
     Eigen::Vector3d point_now;
     bool inside;
