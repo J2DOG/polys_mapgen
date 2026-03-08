@@ -3,6 +3,8 @@
 `polys_mapgen` is a small ROS (catkin) package that generates a **3D point cloud map from convex polytopes (H‑polytopes)** and publishes it as a `sensor_msgs/PointCloud2` topic, attached with a launch file that starts RViz, the map generator, and a global planner node.
 It is designed to generate your custom structed environments for planner to vertify algrithms quickly.
 
+<img src="./assets/magen_1.png" alt="Example generated polytope map"/>
+
 
 ### Quick start
 1. **Prerequisites**: Install ROS (has been vertified on Noetic) and Eigen3 (and PCL, yaml-cpp if not pulled in by ROS).

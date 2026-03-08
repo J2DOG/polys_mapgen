@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <launch>
     <node name="rviz" pkg="rviz" type="rviz" output="screen"
-        args="-d $(find gcopter)/config/global_planning.rviz"> 
+        args="-d $(find polys_mapgen)/rviz/view_map.rviz"> 
     </node>
 
     <node pkg="polys_mapgen" type="hpolys_mapgen_node" name="hpolys_mapgen_node" output="screen">
