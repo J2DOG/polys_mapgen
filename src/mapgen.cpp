@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
     // Define some example convex polytopes (as 4D matrices)
     std::vector<Eigen::MatrixX4d> hPolys;
     std::string pkg_path = ros::package::getPath("polys_mapgen");
-    std::string obs_yaml_path = pkg_path + "/cfg/random_obstacles.yaml";
+    std::string obs_yaml_path = pkg_path + "/cfg/convex_obstacles.yaml";
     hPolys = loadObstaclesFromYAML(obs_yaml_path);
     config.hPolys_ptr = &hPolys;
     config.output_ptr = &output;
